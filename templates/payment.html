@@ -10,7 +10,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{url_for('static', filename='styles/checkout.css')}}"
+      href="{{url_for('static', filename='styles/payment.css')}}"
     />
   </head>
   <body>
@@ -34,14 +34,16 @@
       </div>
     </nav>
     <main>
-      <h1>QR Code Pembayaran</h1>
-      <img src="{{url_for('static', filename='images/qr.svg')}}" alt="" />
-      <h1>{{ payment_data.product_name }}</h1>
-      <h1>
-        Rp {{'{:,.0f}'.format(payment_data.total_price +
-        (payment_data.total_price * 11 / 100))}}
-      </h1>
-      <a href="{{url_for('invoice')}}">Sudah Bayar</a>
+      <div class="qr-card">
+        <h1>QR Code Pembayaran</h1>
+        <img src="{{url_for('static', filename='images/qr.svg')}}" alt="" />
+        <h1>{{ payment_data.product_name }}</h1>
+        <h1 style="margin-bottom: 20px">
+          Rp {{'{:,.0f}'.format(payment_data.total_price +
+          (payment_data.total_price * 11 / 100))}}
+        </h1>
+        <a href="{{url_for('invoice')}}">Sudah Bayar</a>
+      </div>
     </main>
     <footer style="margin-top: 0px">
       <div class="footer-content">

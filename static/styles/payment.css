@@ -1,0 +1,17 @@
+main{
+    display: flex;
+    margin-block: 20px;
+    justify-content: center;
+    text-align: center;
+}
+.qr-card{
+    padding: 20px;
+    filter: drop-shadow(0 2px 2px);
+    background-color: white;
+}
+.qr-card a{
+    padding: 10px;
+    background-color: #0C242F;
+    color: white;
+    text-decoration: none;
+}
