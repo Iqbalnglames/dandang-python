@@ -54,9 +54,10 @@
         />
         <label for="harga">Harga</label>
         <input
-          type="text"
-          disabled
-          value="Rp.{{'{:,.0f}'.format(product[2])}}"
+          type="number"
+          readonly
+          name="price"
+          value="{{product[2]}}"
         />
         <label for="ekspedisi">Pengiriman</label>
         <select name="ekspedisi" id="">

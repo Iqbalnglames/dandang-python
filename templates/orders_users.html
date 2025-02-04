@@ -7,6 +7,10 @@
       rel="stylesheet"
       href="{{url_for('static', filename='styles/landing.css')}}"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/orders.css')}}"
+    />
     <title>Cari Pesanan</title>
   </head>
   <body>
@@ -30,6 +34,7 @@
       </div>
     </nav>
     <main>
+      <h1>Cari Orderan Kamu</h1>
       <form method="POST" action="{{ url_for('orders') }}">
         <label for="kd_order">Masukkan Kode Order:</label>
         <input type="text" id="kd_order" name="kd_order" required />

@@ -52,7 +52,6 @@ init_db()
 # Route untuk halaman utama
 @app.route("/")
 def index():
-    
     return render_template("index.html")
 
 @app.route('/profile')
@@ -68,8 +67,8 @@ def product():
     conn.close()
     return render_template("products.html", products=products)
 
-@app.route('/cart/<string:produk>')
-def cart(produk):
+@app.route('/chekout/<string:produk>')
+def checkout(produk):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('SELECT name, slug, price FROM products WHERE slug = ?', (produk,))
@@ -87,6 +86,7 @@ def place_order():
     customer_name = request.form["customer_name"]
     address = request.form["address"]
     contact = request.form["contact"]
+    price = request.form["price"]
 
     if not product_name or not quantity or not customer_name or not address or not contact:
         flash("Semua kolom harus diisi!", "danger")
@@ -101,9 +101,24 @@ def place_order():
     conn.commit()
     conn.close()
 
-    flash("Pesanan berhasil dibuat!", "success")
-    return redirect(url_for("index"))
+    session["invoice_data"] = {
+        "kd_order": kd_order,
+        "product_name": product_name,
+        "quantity": quantity,
+        "customer_name": customer_name,
+        "address": address,
+        "contact": contact,
+        "price": float(price),
+        "total_price": int(quantity) * float(price)
+    }
 
+    flash("Pesanan berhasil dibuat!", "success")
+    return redirect(url_for("invoice"))
+
+@app.route('/invoice')
+def invoice():
+    invoice_data = session.get("invoice_data") 
+    return render_template('invoice.html', invoice_data=invoice_data)
 
 # Route untuk melihat daftar pesanan user side
 @app.route("/orders-search", methods=['GET', 'POST'])

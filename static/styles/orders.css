@@ -1,0 +1,26 @@
+main{
+    height: 72.1vh;
+    padding: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: fit-content;
+    padding: 20px;
+    filter: drop-shadow(0 2px 2px);
+    border-radius: 10px;
+}
+form label {
+    margin-top: 10px;
+}
+form input {
+    margin-top: 5px;
+    padding: 6px;
+    width: 200px;
+}
+form button {
+    margin-top: 5px;
+    padding: 6px;
+    width: 216px;
+}

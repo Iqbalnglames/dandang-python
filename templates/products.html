@@ -24,6 +24,7 @@
         <div class="navigation">
           <a href="{{url_for('index')}}">Home</a>
           <a href="{{url_for('product')}}">Shop</a>
+          <a href="{{url_for('orders')}}">Orders</a>
           <a href="{{url_for('profile')}}">Profil</a>
         </div>
         <div class="login-btn">
@@ -47,7 +48,7 @@
         <div class="card-container">
           {% for product in products %}
           <a
-            href="{{ url_for('cart', produk=product[1]) }}"
+            href="{{ url_for('checkout', produk=product[1]) }}"
             class="card-product"
           >
             <img
