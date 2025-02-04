@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import sqlite3
-from flask_bcrypt import Bcrypt
 import random
 
 app = Flask(__name__)
 app.secret_key = "secret123"
-bcrypt = Bcrypt(app)
 
 
 # Fungsi untuk membuat database
