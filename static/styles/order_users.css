@@ -1,0 +1,7 @@
+.result{
+display: flex;
+justify-content: center;
+}
+.result form{
+margin-top: 40px;
+}

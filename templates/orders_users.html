@@ -11,6 +11,14 @@
       rel="stylesheet"
       href="{{url_for('static', filename='styles/orders.css')}}"
     />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/order_users.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/invoice.css')}}"
+    />
     <title>Cari Pesanan</title>
   </head>
   <body>
@@ -34,35 +42,87 @@
       </div>
     </nav>
     <main>
-      <h1>Cari Orderan Kamu</h1>
-      <form method="POST" action="{{ url_for('orders') }}">
-        <label for="kd_order">Masukkan Kode Order:</label>
-        <input type="text" id="kd_order" name="kd_order" required />
-        <button type="submit">Cari</button>
-      </form>
-      {% if kd_order and orders %}
-      <h3>Hasil untuk Kode Order: {{ kd_order }}</h3>
-      <table border="1">
-        <tr>
-          <th>Nama Produk</th>
-          <th>Jumlah</th>
-          <th>Pelanggan</th>
-          <th>Alamat</th>
-          <th>Kontak</th>
-        </tr>
-        {% for order in orders %}
-        <tr>
-          <td>{{ order[1] }}</td>
-          <td>{{ order[2] }}</td>
-          <td>{{ order[3] }}</td>
-          <td>{{ order[4] }}</td>
-          <td>{{ order[5] }}</td>
-        </tr>
-        {% endfor %}
-      </table>
-      {% elif kd_order %}
-      <p>Tidak ada hasil untuk kode order: {{ kd_order }}</p>
-      {% endif %}
+      <h1 style="text-align: center">Cari Orderan Kamu</h1>
+      <div class="result">
+        <form method="POST" action="{{ url_for('orders') }}">
+          <label for="kd_order">Masukkan Kode Order:</label>
+          <input type="text" id="kd_order" name="kd_order" required />
+          <button type="submit">Cari</button>
+        </form>
+        {% if kd_order and orders %} {% for order in orders %}
+        <div class="invoice">
+          <h2>INVOICE</h2>
+          <p style="text-align: center; margin-bottom: 10px">
+            Harap Catat Kode Pembelian Anda!
+          </p>
+          <div class="invoice-header">
+            <div class="invoice-info">
+              <p><strong>Kode Pembelian:</strong> {{ order[1] }}</p>
+              <p><strong>Tanggal:</strong> 4 Februari 2025</p>
+            </div>
+            <div class="customer-info">
+              <p><strong>Pelanggan:</strong> {{ order[4] }}</p>
+              <p><strong>Alamat:</strong> {{ order[5] }}</p>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Deskripsi</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ order[2] }}</td>
+                <td>{{ order[3] }}</td>
+
+                {% if order[2] in products %}
+                <td>Rp {{ '{:,.0f}'.format(products[order[2]][3]) }}</td>
+                <td>Rp {{ '{:,.0f}'.format(products[order[2]][3]) }}</td>
+                {% else %}
+                <td colspan="2">Produk tidak ditemukan</td>
+                {% endif %}
+              </tr>
+            </tbody>
+
+            {% if order[2] in products %}
+            <tfoot>
+              <tr>
+                <td colspan="3" class="total">Subtotal</td>
+                <td>
+                  Rp {{ '{:,.0f}'.format(products[order[2]][3] * order[3]) }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="total">PPN (11%)</td>
+                <td>
+                  Rp {{ '{:,.0f}'.format(products[order[2]][3] * order[3] * 0.11
+                  )}}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="total">Total Bayar</td>
+                <td>
+                  <strong>
+                    Rp {{ '{:,.0f}'.format(products[order[2]][3] * order[3] +
+                    (products[order[2]][3] * order[3] * 11/100)) }}
+                  </strong>
+                </td>
+              </tr>
+            </tfoot>
+            {% endif %}
+          </table>
+          <p class="footer">
+            Terima kasih telah berbelanja di Bimantara Stainless Steel
+          </p>
+        </div>
+        {% endfor %} {% elif kd_order %}
+        <p>Tidak ada hasil untuk kode order: {{ kd_order }}</p>
+        {% endif %}
+      </div>
     </main>
     <footer style="margin-top: 0px">
       <div class="footer-content">

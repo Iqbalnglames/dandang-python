@@ -12,6 +12,13 @@
       rel="stylesheet"
       href="{{url_for('static', filename='styles/invoice.css')}}"
     />
+    <style>
+      main {
+        display: flex;
+        justify-content: center;
+        height: 67.9vh;
+      }
+    </style>
   </head>
   <body>
     <nav class="nav-bar">
@@ -82,7 +89,7 @@
               <td>
                 <strong
                   >Rp {{'{:,.0f}'.format(invoice_data.total_price +
-                  (invoice_data.total_price * 11 / 100))}}</strong
+                  invoice_data.total_price * 11 / 100)}}</strong
                 >
               </td>
             </tr>

@@ -67,7 +67,7 @@ def product():
     conn.close()
     return render_template("products.html", products=products)
 
-@app.route('/chekout/<string:produk>')
+@app.route('/checkout/<string:produk>')
 def checkout(produk):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -75,7 +75,6 @@ def checkout(produk):
     product = cursor.fetchone()
     conn.close()
     return render_template('checkout.html', product=product)
-
 
 # Route untuk menangani pemesanan
 @app.route("/place_order", methods=["POST"])
@@ -111,29 +110,46 @@ def place_order():
         "price": float(price),
         "total_price": int(quantity) * float(price)
     }
+    return redirect(url_for("payment"))
 
-    flash("Pesanan berhasil dibuat!", "success")
-    return redirect(url_for("invoice"))
+@app.route('/payment')
+def payment():
+    payment_data = session.get("invoice_data")
+    return render_template('payment.html', payment_data=payment_data)
 
 @app.route('/invoice')
 def invoice():
     invoice_data = session.get("invoice_data") 
+    flash("Pesanan berhasil dibuat!", "success")
     return render_template('invoice.html', invoice_data=invoice_data)
 
 # Route untuk melihat daftar pesanan user side
 @app.route("/orders-search", methods=['GET', 'POST'])
 def orders():
-    orders = []  
+    orders = []
+    products = {}  # Dictionary untuk menyimpan data produk
     kd_order = ""
+
     if request.method == 'POST':
-        kd_order = request.form['kd_order']
-        if kd_order:  # Jika kd_order tidak kosong
+        kd_order = request.form.get('kd_order')  # Gunakan .get() agar lebih aman
+        if kd_order:
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
+
+            # Ambil semua pesanan berdasarkan kd_order
             cursor.execute("SELECT * FROM orders WHERE kd_order = ?", (kd_order,))
             orders = cursor.fetchall()
+
+            # Ambil detail produk untuk setiap pesanan
+            for order in orders:
+                cursor.execute("SELECT * FROM products WHERE name = ?", (order[2],))
+                product_data = cursor.fetchone()  # Ambil 1 produk sesuai nama
+                if product_data:
+                    products[order[2]] = product_data  # Simpan ke dictionary
             conn.close()
-    return render_template("orders_users.html", orders=orders, kd_order=kd_order)
+
+    return render_template("orders_users.html", orders=orders, products=products, kd_order=kd_order)
+
 
 # Route untuk melihat daftar pesanan admin side
 @app.route("/orders-admin")
