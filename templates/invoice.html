@@ -34,61 +34,64 @@
       </div>
     </nav>
     <main>
-        <div class="invoice">
-            <h2>INVOICE</h2>
-            <div class="invoice-header">
-              <div class="invoice-info">
-                <p><strong>Kode Pembelian:</strong> {{invoice_data.kd_order}}</p>
-                <p><strong>Tanggal:</strong> 4 Februari 2025</p>
-              </div>
-              <div class="customer-info">
-                <p><strong>Pelanggan:</strong> {{invoice_data.customer_name}}</p>
-                <p><strong>Alamat:</strong> {{invoice_data.address}}</p>
-              </div>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Deskripsi</th>
-                  <th>Jumlah</th>
-                  <th>Harga Satuan</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{invoice_data.product_name}}</td>
-                  <td>{{invoice_data.quantity}}</td>
-                  <td>Rp {{'{:,.0f}'.format(invoice_data.price)}}</td>
-                  <td>Rp {{'{:,.0f}'.format(invoice_data.total_price)}}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="3" class="total">Subtotal</td>
-                  <td>Rp.{{'{:,.0f}'.format(invoice_data.total_price)}}</td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="total">PPN (11%)</td>
-                  <td>
-                    Rp.{{'{:,.0f}'.format(invoice_data.total_price * 11 / 100)}}
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="total">Total Bayar</td>
-                  <td>
-                    <strong
-                      >Rp {{'{:,.0f}'.format(invoice_data.total_price +
-                      (invoice_data.total_price * 11 / 100))}}</strong
-                    >
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-            <p class="footer">
-              Terima kasih telah berbelanja di Bimantara Stainless Steel
-            </p>
+      <div class="invoice">
+        <h2>INVOICE</h2>
+        <p style="text-align: center; margin-bottom: 10px">
+          Harap Catat Kode Pembelian Anda!
+        </p>
+        <div class="invoice-header">
+          <div class="invoice-info">
+            <p><strong>Kode Pembelian:</strong> {{invoice_data.kd_order}}</p>
+            <p><strong>Tanggal:</strong> 4 Februari 2025</p>
+          </div>
+          <div class="customer-info">
+            <p><strong>Pelanggan:</strong> {{invoice_data.customer_name}}</p>
+            <p><strong>Alamat:</strong> {{invoice_data.address}}</p>
+          </div>
         </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Deskripsi</th>
+              <th>Jumlah</th>
+              <th>Harga Satuan</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{invoice_data.product_name}}</td>
+              <td>{{invoice_data.quantity}}</td>
+              <td>Rp {{'{:,.0f}'.format(invoice_data.price)}}</td>
+              <td>Rp {{'{:,.0f}'.format(invoice_data.total_price)}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="total">Subtotal</td>
+              <td>Rp.{{'{:,.0f}'.format(invoice_data.total_price)}}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="total">PPN (11%)</td>
+              <td>
+                Rp.{{'{:,.0f}'.format(invoice_data.total_price * 11 / 100)}}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="total">Total Bayar</td>
+              <td>
+                <strong
+                  >Rp {{'{:,.0f}'.format(invoice_data.total_price +
+                  (invoice_data.total_price * 11 / 100))}}</strong
+                >
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="footer">
+          Terima kasih telah berbelanja di Bimantara Stainless Steel
+        </p>
+      </div>
     </main>
     <footer>
       <div class="footer-content">
