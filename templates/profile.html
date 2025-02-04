@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/landing.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/profile.css')}}"
+    />
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <img
+        id="logo"
+        src="{{url_for('static', filename='images/logo.png')}}"
+        alt="logo"
+      />
+      <div class="nav-link">
+        <div class="navigation">
+          <a href="{{url_for('index')}}">Home</a>
+          <a href="{{url_for('product')}}">Shop</a>
+          <a href="{{url_for('profile')}}">Profil</a>
+        </div>
+        <div class="login-btn">
+          <a id="login" href="#">Login</a>
+          <a id="sign-up" href="#">Daftar</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="descript">
+        <div class="descript-content">
+          <img
+            src="{{url_for('static', filename='images/logobm.png')}}"
+            alt="logo"
+          />
+          <p>
+            Bimantara Stainless Steel adalah usaha rumahan yang berfokus pada
+            <br />
+            produksi dandang kukus berkualitas tinggi, juga dikenal sebagai
+            dandang <br />
+            nanak nasi. Berdiri sejak tahun 1995 oleh Bapak Triyono yang belajar
+            secara <br />
+            otodidak, usaha ini kini diteruskan oleh anaknya, Aji Bimantara,
+            sejak tahun <br />
+            2023. Awalnya dikenal sebagai Prasojo Mukti, nama UMKM ini kini
+            berubah <br />
+            menjadi Bimantara Stainless Steel, yang bertempatan di desa Kujon
+            Rt01, <br />
+            Rw05, Kecamatan Ceper, Kabupaten Klaten
+          </p>
+        </div>
+      </div>
+      <img
+        src="{{url_for('static', filename='images/maps.png')}}"
+        alt="maps"
+        width="100%"
+      />
+    </main>
+    <footer style="margin-top: 0px">
+      <div class="footer-content">
+        <img
+          height="61px"
+          src="{{url_for('static', filename='images/logotext.png')}}"
+          alt="logo text"
+        />
+        <p style="font-size: 15px; text-align: center">
+          Toko Peralatan Rumah Tangga <br />
+          Fokus di Produksi Dandang
+        </p>
+        <div class="contact">
+          <p>Contact Us</p>
+          <p>+62 878-3162-0154</p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>@Copyright Bimantara Stainless Steel 2025. All Right Reserved</p>
+        <div>
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/ig.png')}}"
+            alt=""
+          />
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/email.png')}}"
+            alt=""
+          />
+          <img src="{{url_for('static', filename='images/fb.png')}}" alt="" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

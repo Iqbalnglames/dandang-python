@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    padding-inline: 40px;
+    padding-block: 8px;
+    margin: 0;
+    justify-content: space-between;
+    background-color: #0c242f;
+  }
+.content {
+    height: 85%;
+}
+
+  .nav-link {
+    display: flex;
+    place-items: center;
+}
+
+.navigation {
+    margin-right: 10px;
+  }
+
+.navigation a{
+    text-decoration: none;
+    color: white;
+  }
+
+  #login {
+    padding: 6px;
+    border-radius: 2px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+  }
+
+  #sign-up {
+    padding: 6px;
+    border-radius: 2px;
+    text-decoration: none;
+    background-color: #302dc2;
+    color: white;
+  }
+
+  .hero{
+    display: flex;
+    place-content: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    color: white;
+    height: 350px;
+    padding: 25px;
+    background-image: linear-gradient(to right, #0C242F, #4B616B, #0C242F );
+  }
+
+  figcaption {
+    place-content: center;
+  }
+
+  .motto {
+    margin-top: 40px;
+  }
+
+  .motto img {
+    display: block;
+    margin: auto;
+  }
+
+  .motto p {
+    text-align: center;
+    font-size: 28px;
+    font-style: italic;
+    margin-block: 40px;
+  }
+  footer {
+    margin-top: 40px;
+}
+.footer-content {
+    padding-inline: 60px;
+    display: flex;
+    height: 135px;
+    justify-content: space-between;
+    background-color: #0C242F;
+    color: white;
+    place-items: center;
+}
+.copyright{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 60px;
+    color: white;
+    background-color: #102A36;
+    height: 50px;
+    place-items: center;
+}

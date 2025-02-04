@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistem Pemesanan</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/landing.css')}}"
+    />
+  </head>
+  <body>
+    <!-- 
+<div class="container mt-4">
+    <h2 class="text-center">Daftar Produk</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Nama Produk</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>Rp {{ "{:,.0f}".format(product[1]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="mt-5 text-center">Formulir Pemesanan</h2>
+    <form action="{{ url_for('place_order') }}" method="post" class="mt-3">
+        <div class="mb-3">
+            <label for="product_name" class="form-label">Pilih Produk</label>
+            <select class="form-select" name="product_name" required>
+                {% for product in products %}
+                <option value="{{ product[0] }}">{{ product[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Jumlah</label>
+            <input type="number" class="form-control" name="quantity" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nama</label>
+            <input type="text" class="form-control" name="customer_name" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Alamat</label>
+            <textarea class="form-control" name="address" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kontak</label>
+            <input type="text" class="form-control" name="contact" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="{{ url_for('orders') }}" class="btn btn-secondary">Lihat Daftar Pesanan</a>
+    </div>
+</div> -->
+    <nav class="nav-bar">
+      <img
+        id="logo"
+        src="{{url_for('static', filename='images/logo.png')}}"
+        alt="logo"
+      />
+      <div class="nav-link">
+        <div class="navigation">
+          <a href="{{url_for('index')}}">Home</a>
+          <a href="{{url_for('product')}}">Shop</a>
+          <a href="{{url_for('profile')}}">Profil</a>
+        </div>
+        <div class="login-btn">
+          <a id="login" href="#">Login</a>
+          <a id="sign-up" href="#">Daftar</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="hero">
+        <figcaption>
+          <h1 style="font-size: 40px">Selamat Datang</h1>
+          <p style="font-size: 20px">
+            Selamat datang di Bimantara Stainless Steel <br />Temukan beragam
+            pilihan dandang kukus penanak nasi yang<br />
+            dirancang untuk memenuhi kebutuhan memasak Anda.
+          </p>
+        </figcaption>
+        <figure>
+          <img
+            src="{{url_for('static', filename='images/dandangnobg.png')}}"
+            alt=""
+          />
+        </figure>
+      </div>
+      <div class="motto">
+        <img
+          src="{{url_for('static', filename='images/ornament.png')}}"
+          alt="ornament"
+        />
+        <p>
+          “ Produk kami mengutamakan ketahanan dan kualitas, <br />
+          untuk memberikan pengalaman memasak yang praktis dan berkualitas ”
+        </p>
+        <img
+          src="{{url_for('static', filename='images/ornament.png')}}"
+          alt="ornament"
+        />
+      </div>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <img
+          height="61px"
+          src="{{url_for('static', filename='images/logotext.png')}}"
+          alt="logo text"
+        />
+        <p style="font-size: 15px; text-align: center">
+          Toko Peralatan Rumah Tangga <br />
+          Fokus di Produksi Dandang
+        </p>
+        <div class="contact">
+          <p>Contact Us</p>
+          <p>+62 878-3162-0154</p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>@Copyright Bimantara Stainless Steel 2025. All Right Reserved</p>
+        <div>
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/ig.png')}}"
+            alt=""
+          />
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/email.png')}}"
+            alt=""
+          />
+          <img src="{{url_for('static', filename='images/fb.png')}}" alt="" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

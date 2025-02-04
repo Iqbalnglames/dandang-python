@@ -1,0 +1,22 @@
+body{
+    background-color: #2A4E5D;
+}
+.descript {
+    color: white;
+    padding: 25px;
+}
+.descript-content {
+    display: flex;
+    font-size: 25px;
+    font-style: italic;
+    place-items: center;
+    justify-content: center;
+    color: white;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: #0C242F;
+}
+.descript-content img {
+    margin-right: 40px;
+    height: 250px;
+}

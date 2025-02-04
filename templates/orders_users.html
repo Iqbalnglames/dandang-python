@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles/landing.css')}}"
+    />
+    <title>Cari Pesanan</title>
+  </head>
+  <body>
+    <nav class="nav-bar">
+      <img
+        id="logo"
+        src="{{url_for('static', filename='images/logo.png')}}"
+        alt="logo"
+      />
+      <div class="nav-link">
+        <div class="navigation">
+          <a href="{{url_for('index')}}">Home</a>
+          <a href="{{url_for('product')}}">Shop</a>
+          <a href="{{url_for('orders')}}">Orders</a>
+          <a href="{{url_for('profile')}}">Profil</a>
+        </div>
+        <div class="login-btn">
+          <a id="login" href="#">Login</a>
+          <a id="sign-up" href="#">Daftar</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <form method="POST" action="{{ url_for('orders') }}">
+        <label for="kd_order">Masukkan Kode Order:</label>
+        <input type="text" id="kd_order" name="kd_order" required />
+        <button type="submit">Cari</button>
+      </form>
+      {% if kd_order and orders %}
+      <h3>Hasil untuk Kode Order: {{ kd_order }}</h3>
+      <table border="1">
+        <tr>
+          <th>Nama Produk</th>
+          <th>Jumlah</th>
+          <th>Pelanggan</th>
+          <th>Alamat</th>
+          <th>Kontak</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order[1] }}</td>
+          <td>{{ order[2] }}</td>
+          <td>{{ order[3] }}</td>
+          <td>{{ order[4] }}</td>
+          <td>{{ order[5] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% elif kd_order %}
+      <p>Tidak ada hasil untuk kode order: {{ kd_order }}</p>
+      {% endif %}
+    </main>
+    <footer style="margin-top: 0px">
+      <div class="footer-content">
+        <img
+          height="61px"
+          src="{{url_for('static', filename='images/logotext.png')}}"
+          alt="logo text"
+        />
+        <p style="font-size: 15px; text-align: center">
+          Toko Peralatan Rumah Tangga <br />
+          Fokus di Produksi Dandang
+        </p>
+        <div class="contact">
+          <p>Contact Us</p>
+          <p>+62 878-3162-0154</p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>@Copyright Bimantara Stainless Steel 2025. All Right Reserved</p>
+        <div>
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/ig.png')}}"
+            alt=""
+          />
+          <img
+            style="margin-right: 10px"
+            src="{{url_for('static', filename='images/email.png')}}"
+            alt=""
+          />
+          <img src="{{url_for('static', filename='images/fb.png')}}" alt="" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

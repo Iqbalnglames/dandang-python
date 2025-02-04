@@ -1,0 +1,30 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.form label {
+    margin-top: 10px;
+}
+.form input {
+    margin-top: 5px;
+    padding: 6px;
+    width: 500px;
+}
+.form select {
+    margin-top: 5px;
+    padding: 6px;
+    width: 500px;
+}
+.form textarea {
+    margin-top: 5px;
+    padding: 6px;
+    width: 500px;
+}
+.form button {
+    margin-top: 20px;
+    width: 520px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 6px;
+}
