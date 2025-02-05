@@ -11,7 +11,6 @@ def init_db():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
 
-    # Buat tabel produk
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +20,6 @@ def init_db():
     )
     """)
 
-    # Buat tabel pesanan
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +32,6 @@ def init_db():
     )
     """)
 
-    # Tambahkan produk contoh jika belum ada
     cursor.execute("SELECT COUNT(*) FROM products")
     if cursor.fetchone()[0] == 0:
         cursor.executemany("INSERT INTO products (name, slug, price) VALUES (?, ?, ?)", [
@@ -54,10 +51,12 @@ init_db()
 def index():
     return render_template("index.html")
 
+# Route untuk halaman profil
 @app.route('/profile')
 def profile():
     return render_template('profile.html')
 
+# Route untuk menampilkan daftar produk
 @app.route('/product')
 def product():
     conn = sqlite3.connect("database.db")
@@ -67,6 +66,7 @@ def product():
     conn.close()
     return render_template("products.html", products=products)
 
+# Route untuk checkout
 @app.route('/checkout/<string:produk>')
 def checkout(produk):
     conn = sqlite3.connect('database.db')
@@ -86,10 +86,11 @@ def place_order():
     address = request.form["address"]
     contact = request.form["contact"]
     price = request.form["price"]
+    slug = request.form["slug"]
 
     if not product_name or not quantity or not customer_name or not address or not contact:
         flash("Semua kolom harus diisi!", "danger")
-        return redirect(url_for("index"))
+        return redirect(url_for("checkout", produk=slug))
 
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
@@ -112,11 +113,13 @@ def place_order():
     }
     return redirect(url_for("payment"))
 
+# Route untuk halaman pembayaran
 @app.route('/payment')
 def payment():
     payment_data = session.get("invoice_data")
     return render_template('payment.html', payment_data=payment_data)
 
+# Route untuk halaman invoice
 @app.route('/invoice')
 def invoice():
     invoice_data = session.get("invoice_data") 
@@ -127,25 +130,23 @@ def invoice():
 @app.route("/orders-search", methods=['GET', 'POST'])
 def orders():
     orders = []
-    products = {}  # Dictionary untuk menyimpan data produk
+    products = {}
     kd_order = ""
 
     if request.method == 'POST':
-        kd_order = request.form.get('kd_order')  # Gunakan .get() agar lebih aman
+        kd_order = request.form.get('kd_order')
         if kd_order:
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
 
-            # Ambil semua pesanan berdasarkan kd_order
             cursor.execute("SELECT * FROM orders WHERE kd_order = ?", (kd_order,))
             orders = cursor.fetchall()
 
-            # Ambil detail produk untuk setiap pesanan
             for order in orders:
                 cursor.execute("SELECT * FROM products WHERE name = ?", (order[2],))
-                product_data = cursor.fetchone()  # Ambil 1 produk sesuai nama
+                product_data = cursor.fetchone()
                 if product_data:
-                    products[order[2]] = product_data  # Simpan ke dictionary
+                    products[order[2]] = product_data
             conn.close()
 
     return render_template("orders_users.html", orders=orders, products=products, kd_order=kd_order)

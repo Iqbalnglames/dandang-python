@@ -1,5 +1,6 @@
 .form{
     display: flex;
+    align-items: center;
     flex-direction: column;
     padding: 40px;
 }
@@ -27,4 +28,12 @@
     text-align: center;
     padding: 8px;
     border-radius: 6px;
+}
+.alert{
+    background-color: rgb(243, 147, 147);
+    color: red;
+    margin: 6px;
+    padding: 10px;
+    border: red solid 1px;
+    text-align: center;
 }

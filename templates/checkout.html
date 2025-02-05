@@ -26,16 +26,20 @@
           <a href="{{url_for('product')}}">Shop</a>
           <a href="{{url_for('orders')}}">Orders</a>
           <a href="{{url_for('profile')}}">Profil</a>
-        </div>
-        <div class="login-btn">
-          <a id="login" href="#">Login</a>
-          <a id="sign-up" href="#">Daftar</a>
-        </div>
+        </div>        
       </div>
     </nav>
     <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
       <form class="form" action="{{url_for('place_order')}}" method="post">
-        <h1>Pembayaran</h1>
+        <h1>Buat Pesanan</h1>
+        <input type="hidden" name="slug" value="{{ product[1] }}">
         <label for="nama">Nama Pembeli</label>
         <input type="text" name="customer_name" />
         <label for="nama">Nama Barang</label>
@@ -54,8 +58,6 @@
         />
         <label for="harga">Harga</label>
         <input type="number" readonly name="price" value="{{product[2]}}" />
-        <label for="diskon">Diskon</label>
-        <input type="text" />
         <label for="alamat">Alamat</label>
         <textarea name="address">Tulis Alamat di sini</textarea>
         <label for="kontak">Kontak</label>
